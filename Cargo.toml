@@ -1,6 +1,6 @@
 [package]
 name = "microsalt"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["SEA"]
 description = "easy to use rust crypto lib (tweetnacl & FFI bindings to it)"
 keywords = [ "nacl", "crypto", "tweetnacl"]

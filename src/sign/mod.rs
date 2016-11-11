@@ -148,51 +148,51 @@ fn test_sign_fail_sanity() {
 
 //https://github.com/maidsafe/rust_sodium/blob/master/src/crypto/sign/ed25519.rs
 //use low level api for this test versus higher level as before fore direct bytes access
-// #[test]
-// fn test_sign_vectors() {
-//     // test vectors from the Python implementation
-//     // from the [Ed25519 Homepage](http://ed25519.cr.yp.to/software.html)
-//     use rustc_serialize::hex::{FromHex, ToHex};
-//     use std::fs::File;
-//     use std::io::{BufRead, BufReader};
+#[test]
+fn test_sign_vectors() {
+    // test vectors from the Python implementation
+    // from the [Ed25519 Homepage](http://ed25519.cr.yp.to/software.html)
+    use rustc_serialize::hex::{FromHex, ToHex};
+    use std::fs::File;
+    use std::io::{BufRead, BufReader};
 
-//     let r = BufReader::new(unwrap!(File::open("testvectors/ed25519.input")));
-//     for mline in r.lines() {
-//         let line = unwrap!(mline);
-//         let mut x = line.split(':');
-//         let x0 = unwrap!(x.next());
-//         let x1 = unwrap!(x.next());
-//         let x2 = unwrap!(x.next());
-//         let x3 = unwrap!(x.next());
-//         let seed_bytes = unwrap!(x0[..64].from_hex());
+    let r = BufReader::new(unwrap!(File::open("testvectors/ed25519.input")));
+    for mline in r.lines() {
+        let line = unwrap!(mline);
+        let mut x = line.split(':');
+        let x0 = unwrap!(x.next());
+        let x1 = unwrap!(x.next());
+        let x2 = unwrap!(x.next());
+        let x3 = unwrap!(x.next());
+        let seed_bytes = unwrap!(x0[..64].from_hex());
 
-//         assert!(seed_bytes.len() == 32);
+        assert!(seed_bytes.len() == 32);
 
-//         let mut seedbuf = [0u8; 32];
-//         for (s, b) in seedbuf.iter_mut().zip(seed_bytes.iter()) {
-//             *s = *b
-//         }
+        let mut seedbuf = [0u8; 32];
+        for (s, b) in seedbuf.iter_mut().zip(seed_bytes.iter()) {
+            *s = *b
+        }
 
-//         let seed = seedbuf;
-//         let mut pk = [0u8; PUBLIC_KEY_BYTES];
-//         let mut sk = [0u8; SECRET_KEY_BYTES];
-//         ed25519::crypto_sign_keypair_seed(&mut pk, &mut sk, &seed);
+        let seed = seedbuf;
+        let mut pk = [0u8; PUBLIC_KEY_BYTES];
+        let mut sk = [0u8; SECRET_KEY_BYTES];
+        ed25519::crypto_sign_keypair_seed(&mut pk, &mut sk, &seed);
         
-//         let m = unwrap!(x2.from_hex());
+        let m = unwrap!(x2.from_hex());
         
-//         let mut sm = std::iter::repeat(0).take(m.len() + SIGN_BYTES).collect::<Vec<_>>();
-//         ed25519::crypto_sign(&mut sm, &m, &sk);
-//         let smp = sm.clone();
-//         let sg = SignedData {public_key: pk, signed: smp};
+        let mut sm = std::iter::repeat(0).take(m.len() + SIGN_BYTES).collect::<Vec<_>>();
+        ed25519::crypto_sign(&mut sm, &m, &sk);
+        let smp = sm.clone();
+        let sg = SignedData {public_key: pk, signed: smp};
         
-//         assert!(unwrap!(sg.verify()) == m);
+        assert!(unwrap!(sg.verify()) == m);
 
-//         //println!("{:?}", pk.to_hex());
-//         //println!("{:?}", x1);
-//         assert!(x1 == pk.to_hex());
+        //println!("{:?}", pk.to_hex());
+        //println!("{:?}", x1);
+        assert!(x1 == pk.to_hex());
 
-//         //println!("{:?}", sk.to_hex());
-//         //println!("{:?}", x3);
-//         assert!(x3 == sm.to_hex());
-//     }
-// }
+        //println!("{:?}", sk.to_hex());
+        //println!("{:?}", x3);
+        assert!(x3 == sm.to_hex());
+    }
+}
