@@ -1,3 +1,6 @@
+# WIP 
+This is still in active development use with caution. Documentation and Examples will soon be available once public api has become stable 
+
 # microsalt
 High Level Crypto library for your trusty rusty programs
 
