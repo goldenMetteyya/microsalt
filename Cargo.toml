@@ -1,0 +1,15 @@
+[package]
+name = "microsalt"
+version = "0.1.4"
+authors = ["SEA"]
+description = "easy to use rust crypto lib (tweetnacl & FFI bindings to it)"
+keywords = [ "nacl", "crypto", "tweetnacl"]
+license = "MIT"
+homepage = "https://github.com/goldenMetteyya/microsalt"
+
+[dependencies]
+libc = "0.*"
+rand = "0.3"
+index-fixed = "0.0.*"
+unwrap = "~1.1.0"
+rustc-serialize = "0.3.19"
