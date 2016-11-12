@@ -6,7 +6,7 @@ High Level Crypto library for your trusty rusty programs
 
 # Examples
 ## Hash -> sha512
-```
+```rust
 extern crate microsalt;
 
 fn main() {
