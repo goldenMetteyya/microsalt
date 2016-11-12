@@ -39,6 +39,14 @@ fn main() {
 ## secretbox -> Secret key Box Construct
 
 ## sign
+```rust
+//Available types
+microsalt::sign::PublicKey 
+microsalt::sign::SecretKey
+
+
+```
+
 
 ## onetimeauth
 
