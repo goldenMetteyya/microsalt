@@ -10,16 +10,16 @@ High Level Pure Rust Crypto library for your trusty rusty programs
 
 |  Module       | Primitive                   |
 | ------------- | ----------------------------|
-| cryptobox     | Curve25519/Salsa20/Poly1305 |
+| boxy          | Curve25519/Salsa20/Poly1305 |
 | hash          | SHA-512                     |
 | secretbox     | Salsa20/Poly1305            |
 | sign          | Ed25519                     |
 | stream        | Salsa20                     |
-
+| onetimeauth   | Poly1305                    |
 ***
 
 # Examples
-## Hash -> sha512
+## Hash 
 ```rust
 extern crate microsalt;
 
@@ -30,6 +30,16 @@ fn main() {
   println!("{:?}", hash.to_vec()); //converts to vector for easy printing   
 }
 ```
+
+## boxy -> Public Key Box Construct
+
+## secretbox -> Secret key Box Construct
+
+## sign
+
+## onetimeauth
+
+## stream
 ***
 
 ### https://tweetnacl.cr.yp.to/
