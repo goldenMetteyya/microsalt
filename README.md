@@ -23,6 +23,7 @@ There is test coverage for each module but more is needed
 
 # Examples
 ## Hash 
+Currently the hasher function takes data as &[u8] 
 ```rust
 extern crate microsalt;
 
