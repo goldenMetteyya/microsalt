@@ -6,6 +6,9 @@ This is still in active development use with caution. Documentation and Examples
 # microsalt
 High Level Pure Rust Crypto library for your trusty rusty programs
 
+### Tests
+There is test coverage for each module but more is needed 
+
 #### The following cryptographic primitives are used with this library.
 
 |  Module       | Primitive                   |
