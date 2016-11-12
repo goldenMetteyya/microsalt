@@ -4,6 +4,16 @@ This is still in active development use with caution. Documentation and Examples
 # microsalt
 High Level Crypto library for your trusty rusty programs
 
+#### The following cryptographic primitives are used with this library.
+
+|  Module       | Primitive                   |
+| ------------- | ----------------------------|
+| cryptobox     | Curve25519/Salsa20/Poly1305 |
+| hash          | SHA-512                     |
+| secretbox     | Salsa20/Poly1305            |
+| sign          | Ed25519                     |
+| stream        | Salsa20                     |
+
 # Examples
 ## Hash -> sha512
 ```rust
