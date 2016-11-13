@@ -55,7 +55,7 @@ fn main() {
   let signature = keypair.sign(&msg); //sign(data: &[u8]) so must pass data as [u8]
   
   //the signature variable can be used to acces its fields as seen bellow
-  //signature.public_key --> the public key used to sign this data
+  //signature.public_key --> the public key used to verify this data
   //signature.signed --> A vector (Vec<u8>) that holds the signature + data
   
   //verigy our signature
