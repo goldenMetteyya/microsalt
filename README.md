@@ -51,7 +51,7 @@ fn main() {
   let keypair = microsalt::sign::Keypair::new();
   let msg = b"Hello World";
   //sign our msg, returns SignedData type that encapsulates the public key and signed data
-  //Please note that this contruct will attach the signature the the begining of the given data
+  //Please note that this contruct will attach the signature to the begining of the given data
   let signature = keypair.sign(&msg); //sign(data: &[u8]) so must pass data as [u8]
   //verigy our signature
   let verify_signature = signature.verify(); //returns an Option<Vec<u8>> so can be Some() or None
@@ -59,7 +59,7 @@ fn main() {
   assert!(verify_signature.unwrap() == msg);
 }
 ```
-
+Detached signature are WIP
 
 ## onetimeauth
 
