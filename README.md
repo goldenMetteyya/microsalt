@@ -53,8 +53,14 @@ fn main() {
   //sign our msg, returns SignedData type that encapsulates the public key and signed data
   //Please note that this contruct will attach the signature to the begining of the given data
   let signature = keypair.sign(&msg); //sign(data: &[u8]) so must pass data as [u8]
+  
+  //the signature variable can be used to acces its fields as seen bellow
+  //signature.public_key 
+  //signature.signed
+  
   //verigy our signature
   let verify_signature = signature.verify(); //returns an Option<Vec<u8>> so can be Some() or None
+
   //compare
   assert!(verify_signature.unwrap() == msg);
 }
