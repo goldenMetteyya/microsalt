@@ -70,7 +70,7 @@ fn main() {
 
 fn main() {
   //generate keypair
-  let key = Keypair::new();
+  let key = microsalt::sign::Keypair::new();
   let message = b"Hello World";
   //the signtaure function may be used when you just need the signature
   let signature = microsalt::sign::signature(&message, &key.secret);
