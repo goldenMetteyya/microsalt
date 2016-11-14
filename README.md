@@ -39,7 +39,7 @@ fn main() {
 
 ## secretbox -> Secret key Box Construct
 
-## sign
+## Sign
 ```rust
 //Available types
 microsalt::sign::PublicKey 
@@ -65,7 +65,21 @@ fn main() {
   assert!(verify_signature.unwrap() == msg);
 }
 ```
-Detached signature are WIP
+### Detached signatures
+```rust
+
+fn main() {
+  //generate keypair
+  let key = Keypair::new();
+  let message = b"Hello World";
+  //the signtaure function may be used when you just need the signature
+  let signature = microsalt::sign::signature(&message, &key.secret);
+  //this is the verify function for signature generated using the function above
+  let verified_signature = microslat::sign::verify_signature(&message, &signature, &key.public);
+  //the verify_signature function returns a boolean, true for verified and false for not
+  assert!(verified_signature);  
+}
+```
 
 ## onetimeauth
 
