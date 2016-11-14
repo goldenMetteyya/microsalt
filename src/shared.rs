@@ -22,9 +22,7 @@ fn vn(x: &[u8], y: &[u8]) -> isize {
 pub fn verify_16(x: &[u8;16], y: &[u8;16]) -> bool { vn(&x[..], &y[..]) == 0 }
 
 /* XXX: public in tweet-nacl */
-pub fn verify_32(x: &[u8;32], y: &[u8;32]) -> isize { //CHANGE THIS TOO BOOL
-    vn(&x[..], &y[..])
-}
+pub fn verify_32(x: &[u8;32], y: &[u8;32]) -> bool { vn(&x[..], &y[..]) == 0 }
 
 //load integer mod 2^255 - 19
 pub fn unpack25519(o: &mut Gf, n: &[u8]) {
@@ -175,21 +173,21 @@ fn test_verify_16() {
 }
 
 
-// #[test]
-// fn test_verify_32() {
-//     use super::*;
+#[test]
+fn test_verify_32() {
+    use super::*;
 
-//     for _ in 0usize..256 {
-//         let mut x = [0; 32];
-//         let mut y = [0; 32];
-//         assert!(verify_32(&x, &y));
-//         randombytes(&mut x);
-//         randombytes(&mut y);
+    for _ in 0usize..256 {
+        let mut x = [0; 32];
+        let mut y = [0; 32];
+        assert!(verify_32(&x, &y));
+        randombytes(&mut x);
+        randombytes(&mut y);
 
-//         if x == y {
-//             assert!(verify_32(&x, &y))
-//         } else {
-//             assert!(!verify_32(&x, &y))
-//         }
-//     }
-// }
+        if x == y {
+            assert!(verify_32(&x, &y))
+        } else {
+            assert!(!verify_32(&x, &y))
+        }
+    }
+}

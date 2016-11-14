@@ -26,23 +26,6 @@ extern crate unwrap;
 
 extern crate rustc_serialize;
 
-
-use rand::Rng;
-
-pub fn randombytes(x: &mut [u8]){
-    let mut rng = rand::OsRng::new().unwrap();
-    rng.fill_bytes(x);
-}
-
-
-
-
-
-    // Key exchange: X25519
-    // Encryption: XSalsa20 stream cipher
-    // Authentication: Poly1305 MAC
-    // Signature: Ed25519
-
 /// Interface to strong cryptographic hash function.
 pub mod hash;
 ///  Interface to 
@@ -52,6 +35,18 @@ pub mod stream;
 pub mod sign;
 pub mod secretbox;
 pub mod boxy;
+
+
+
+use rand::Rng;
+//random byte generator
+pub fn randombytes(x: &mut [u8]){
+    let mut rng = rand::OsRng::new().unwrap();
+    rng.fill_bytes(x);
+}
+
+
+
 
 
 

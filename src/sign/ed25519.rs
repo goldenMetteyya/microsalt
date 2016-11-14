@@ -258,12 +258,14 @@ pub fn crypto_sign(sm: &mut [u8], m: &[u8], sk: &SecretKey) {
 
     hash::raw_sha512(&mut d, &sk[..32]);
     d[0] &= 248;
-    d[31] &= 127;
+    d[31] &= 127; //63 in libsodium
     d[31] |= 64;
 
+    //copy message after 64th byte into sm 
     for i in 0..m.len() {
         sm[64 + i] = m[i];
     }
+
     for i in 0..32 {
         sm[32 + i] = d[32 + i];
     }
@@ -296,6 +298,7 @@ pub fn crypto_sign(sm: &mut [u8], m: &[u8], sk: &SecretKey) {
     mod_l(index_fixed!(&mut sm[32..];..32), &mut x);
 }
 
+
 //power 2^252 - 3 mod 2^255 - 19
 fn pow2523(o: &mut Gf, i: Gf) {
     let mut c = GF0;
@@ -327,7 +330,7 @@ fn neq25519(a: Gf, b: Gf) -> bool {
 
     shared::pack25519(&mut c,a);
     shared::pack25519(&mut d,b);
-    shared::verify_32(&c, &d) != 0
+    shared::verify_32(&c, &d) != true 
 }
 
 
@@ -443,8 +446,8 @@ pub fn crypto_sign_open(m: &mut [u8], sm : &[u8], pk: &PublicKey) -> Option<usiz
 
 
     let n = sm.len() - 64;
-    /* TODO: check if verify_32 should return a bool */
-    if shared::verify_32(index_fixed!(&sm;..32), &t) != 0 {
+    
+    if shared::verify_32(index_fixed!(&sm;..32), &t) != true {
         for i in 0..n {
             m[i] = 0;
         }

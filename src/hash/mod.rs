@@ -6,6 +6,9 @@
 
 mod sha512;
 
+/// Byte size of the hashed output.
+pub const LENGTH: usize = 64;
+
 //Public hash API
 pub fn hasher(data: &[u8]) -> [u8; sha512::HASH_LENGTH] {
     let mut result = [0u8; sha512::HASH_LENGTH];
